@@ -27,12 +27,14 @@ validate(username:any,password:any){
   }
 
   saveCartItems(cartItems: any) {
-    let currentURL = this.baseURL + 'saveCartItems/admin';
+    const userName = sessionStorage.getItem('username')
+    let currentURL = this.baseURL + 'saveCartItems/'+userName;
     return this.http.post(currentURL,cartItems)
   }
 
   getCartItems() {
-    let currentURL = this.baseURL + 'getCartItems/admin';
+    const userName = sessionStorage.getItem('username')
+    let currentURL = this.baseURL + 'getCartItems/'+userName;
     return this.http.get(currentURL);
   }
 

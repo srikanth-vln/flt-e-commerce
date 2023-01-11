@@ -31,9 +31,11 @@ export class HomeComponent implements OnInit {
         this.productService.getCartItems().subscribe((result: any)=> {
           this.cartProducts = result;
           this.totalItems = this.cartProducts.length;
+          this.totalPrice = 0;
           this.products.forEach(item=> {
             if(this.cartProducts.filter(jtem=> jtem.id == item.id).length==1) {
               item.isCart = true;
+              this.totalPrice = this.totalPrice + item.amount
             }
           })
         })
@@ -47,8 +49,8 @@ export class HomeComponent implements OnInit {
   }
  
 
-  ngOnDestroy(){
-sessionStorage.clear()
+  ngOnDestroy() {
+      sessionStorage.clear()
   }
 
   addProductInCart(product: any) {
@@ -68,14 +70,10 @@ sessionStorage.clear()
     this.totalPrice = this.totalPrice - product.amount;
     product.isCart = false;
   }
-  isloggedout(){
-    if(this.isLoggedout=true){
-      this.router.navigate(['login'])
-    }
-    else{
-      this.router.navigate(['home'])
-      
-    }
+  
+  logOut() {
+    sessionStorage.clear()
+    this.router.navigate(['login'])
   }
 
   saveCartItems() {

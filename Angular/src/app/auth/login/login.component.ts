@@ -50,6 +50,7 @@ export class LoginComponent {
 
     }
     sessionStorage.setItem('validationstatus',result.toString())
+    sessionStorage.setItem('username',this.userName)
     })
 
   }

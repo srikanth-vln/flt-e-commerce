@@ -1,1 +1,36 @@
-<p>cart works!</p>
+<div class="container mt-5" >
+    <div class="row">
+        <div class="col-8">
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>S.No</th>
+                        <th>Name</th>
+                        <th>Price</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let product of cartProducts; let i = index">
+                        <th scope="col">{{i+1}}</th>
+                        <td>{{product.title}}</td>
+                        <td>{{product.amount}}</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <div class="col-4">
+            <div class="card">
+                <div class="card-header">
+                    Total
+                </div>
+                <div class="card-body">
+                    <p><span>Total Items: {{totalItems}}</span></p>
+                    <p><span>Total Price: {{totalPrice}}</span></p>
+                </div>
+                <div class="card-footer">
+                    <button class="btn btn-primary" (click)="saveCartItems()">Save Cart Items</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

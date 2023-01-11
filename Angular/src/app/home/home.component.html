@@ -20,8 +20,7 @@
                 </li>
                 <strong style="font-size: 34px;color:rgb(12, 220, 130);margin-bottom: 20px; margin-right:200px;"> Its Christmas Eve!🎄</strong>
             </ul>
-            <button class="btn btn-primary" (click)="isloggedout()" >Logout⬅️</button>
-            <span class="text-danger ms-3" *ngIf="isloggedout"></span>
+            <button class="btn btn-primary" (click)="logOut()" >Logout⬅️</button>
 
         </div>
     </div>
@@ -64,39 +63,9 @@
 
 
 <!-- after the caart is clicked  -->
-<div class="container mt-5" *ngIf="isCartView">
-    <div class="row">
-        <div class="col-8">
-            <table class="table">
-                <thead>
-                    <tr>
-                        <th>S.No</th>
-                        <th>Name</th>
-                        <th>Price</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr *ngFor="let product of cartProducts; let i = index">
-                        <th scope="col">{{i+1}}</th>
-                        <td>{{product.title}}</td>
-                        <td>{{product.amount}}</td>
-                    </tr>
-                </tbody>
-            </table>
-        </div>
-        <div class="col-4">
-            <div class="card">
-                <div class="card-header">
-                    Total
-                </div>
-                <div class="card-body">
-                    <p><span>Total Items: {{totalItems}}</span></p>
-                    <p><span>Total Price: {{totalPrice}}</span></p>
-                </div>
-                <div class="card-footer">
-                    <button class="btn btn-primary" (click)="saveCartItems()">Save Cart Items</button>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
+<app-cart *ngIf="isCartView" 
+    [cartProducts]="cartProducts" 
+    [totalItems]="totalItems" 
+    [totalPrice]="totalPrice"
+    (saveCartItemsEvent)="saveCartItems()"> 
+</app-cart>
