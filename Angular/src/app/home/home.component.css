@@ -1,0 +1,17 @@
+.card img:hover
+{
+  transition: 1s ease-in-out;
+  transform: scale(1.1);
+}
+.card{
+
+   position:relative;
+   display:flex;
+   flex-direction: column;
+   margin: 30px;
+   padding: 20px;
+   min-width: 0;
+   
+   transition: 0.3s ease-in-out;
+
+}

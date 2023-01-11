@@ -1,0 +1,24 @@
+<div class="container">
+    <div class="col-lg-6 offset-lg-3 mt-5">
+        <div class="card">
+            <div class="card-header text-center">
+                <h2>🐼Shiro🐼</h2>
+            </div>
+            <div class="card-body">
+                <div class="form-group">
+                    <label for="username">Username:</label>
+                    <input type="text" id="username" class="form-control" [(ngModel)]="userName">
+                    <label for="password">Password:</label>
+                    <input type="password" id="password" class="form-control" [(ngModel)]="passWord">
+                </div>
+            </div>
+            <div class="card-footer">
+                <button class="btn btn-primary" (click)="validate()">Login➡️</button>
+                <span class="text-danger ms-3" *ngIf="isError">{{validationMessage}}</span>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+

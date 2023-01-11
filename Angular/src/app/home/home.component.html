@@ -1,0 +1,102 @@
+<nav class="navbar navbar-expand-lg bg-light ">
+    <div class="container-fluid">
+         <!-- <a class="navbar-brand" href="#"> 🐼Shiro🐼 </a> -->
+        <strong style="font-size: 34px;color:rgb(72, 15, 93);margin-bottom: 20px;"> 🐼Shiro🐼</strong>
+        <!-- <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" -->
+            <!-- aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button> --> 
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav">
+                <li class="nav-item">
+                    <a class="nav-link active" role="button" style="font-size: 22px;" (click)="isHomeView=true; isCartView=false;" >Home</a>
+                </li>
+                 <!-- <p class="">Its christmas eve!!! Lets celebrate!!!!</p> -->
+                
+                 <li class="nav-item">
+                    <!-- <i style="font-size: 22px;" class="fas fa-cart-plus">cart {{totalItems}}</i> -->
+                    <a class="nav-link" role="button" style="font-size: 22px; margin-right:250px;"(click)="isHomeView=false; isCartView=true">Cart🛳️
+                        ({{totalItems}})</a>
+                </li>
+                <strong style="font-size: 34px;color:rgb(12, 220, 130);margin-bottom: 20px; margin-right:200px;"> Its Christmas Eve!🎄</strong>
+            </ul>
+            <button class="btn btn-primary" (click)="isloggedout()" >Logout⬅️</button>
+            <span class="text-danger ms-3" *ngIf="isloggedout"></span>
+
+        </div>
+    </div>
+</nav> 
+
+
+<div class="container mt-5" *ngIf="isHomeView">
+    <h4>Women Dresses👗</h4>
+    <hr>
+    <div class="row">
+        <div class="col-4" *ngFor="let product of products;">
+            <div class="card">
+                <div class="card-header text-bg-secondary" style="font-size:medium ">
+                    {{product.title}}
+                </div>
+                <div class="card-body text-center">
+                    <img src="{{product.image}}" alt="" width="250px" height="350px">
+                    <p class="" style="width: 320px;text-overflow: ellipsis;overflow: hidden;white-space: nowrap;" >{{product.description}}</p>
+                    <hr>
+                    <p>RS-{{product.amount}}/-</p>
+                </div>
+                <div class="card-footer">
+                    <div class="row text-center">
+                        <div class="col" *ngIf="!product.isCart">
+                            <button class="btn btn-dark" (click)="addProductInCart(product)"> Add 🛒 </button>
+                        </div>
+                        <div class="col" *ngIf="product.isCart">
+                            <button class="btn btn-danger" (click)="deleteProductInCart(product)"> Remove 🤦‍♂️ </button>
+                        </div>
+                    </div>
+                    
+                    
+                </div>
+            </div>
+        </div>
+        
+    </div>
+    
+</div>
+
+
+<!-- after the caart is clicked  -->
+<div class="container mt-5" *ngIf="isCartView">
+    <div class="row">
+        <div class="col-8">
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>S.No</th>
+                        <th>Name</th>
+                        <th>Price</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let product of cartProducts; let i = index">
+                        <th scope="col">{{i+1}}</th>
+                        <td>{{product.title}}</td>
+                        <td>{{product.amount}}</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <div class="col-4">
+            <div class="card">
+                <div class="card-header">
+                    Total
+                </div>
+                <div class="card-body">
+                    <p><span>Total Items: {{totalItems}}</span></p>
+                    <p><span>Total Price: {{totalPrice}}</span></p>
+                </div>
+                <div class="card-footer">
+                    <button class="btn btn-primary" (click)="saveCartItems()">Save Cart Items</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
